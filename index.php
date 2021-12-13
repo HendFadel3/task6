@@ -1,4 +1,5 @@
 
+
 <?php 
 
 require 'helpers.php';
@@ -26,28 +27,28 @@ require 'dbconection.php';
 
        
 
-    //    if(!empty($_FILES['img']['name'])){
-    //      $errors['img'] = "Field Required";
-    //     }else{
-    //        $tmpPath    =  $_FILES['img']['tmp_name'];
-    //        $imageName  =  $_FILES['img']['name'];
-    //        $exArray   = explode('.',$imageName);
-    //        $extension = end($exArray);
-    //        $FinalName = rand().time().'.'.$extension;
-    //        $allowedExtension = ["png",'jpg'];
-              
-    //           if(in_array($extension,$allowedExtension)){
-    //                  $desPath = './uploads/'.$FinalName;
-    //                if(move_uploaded_file($tmpPath,$desPath)){
-    //                    echo 'Image Uploaded';
-    //                    }else{
-    //                      echo 'Error In Uploading file';
-    //                    }
-    //                }
-    //        if(!in_array($extension,$allowedExtension)){
-    //            $errors['img'] = "Invalid Extension";
-    //        }
-    //     }
+       if(!empty($_FILES['img']['name'])){
+
+        $tmpPath    =  $_FILES['img']['tmp_name'];
+        $imageName  =  $_FILES['img']['name'];
+        $imageSize  =  $_FILES['img']['size'];
+        $imageType  =  $_FILES['img']['type'];
+        $exArray   = explode('.',$imageName);
+        $extension = end($exArray);
+        $FinalName = rand().time().'.'.$extension;
+        $allowedExtension = ["png",'jpg'];
+         if(in_array($extension,$allowedExtension)){
+            $desPath = './uploads/'.$FinalName;
+              if(move_uploaded_file($tmpPath,$desPath))
+              {echo 'Image Uploaded';}
+              else{echo 'Error In Uploading file';}
+         }
+         else{echo 'Not Allowed Extension .... ';}
+
+     }else{echo 'Image Field Required';}
+
+    
+
 
 
 
